@@ -21,12 +21,14 @@ public class Jdbc {
 	static Statement st = null ;
 	static PreparedStatement pr = null ;
 	static ResultSet rs = null ;
-	List<Model_user> list = new ArrayList<Model_user>();
+	
 	
 	//查询数据  返回 结果集 query();
 	public List<Model_user> query(String sql){
+		List<Model_user> list = new ArrayList<Model_user>();
 		System.out.println("--jdbc层--查询数据库第一步");
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 		//	cn = DriverManager.getConnection(url,user,password);
 			cn = DriverManager.getConnection(url, user, password);
 			System.out.println("连接成功.....");
@@ -34,16 +36,27 @@ public class Jdbc {
 			System.out.println("++++++bbb");
 			rs = st.executeQuery(sql);
 			System.out.println("--jdbc层--查询数据库第2步");
+			
 			while(rs.next()){
+				System.out.println("--jdbc层--查询数据库第3步");
 				list.add(new Model_user(rs.getInt(1) ,rs.getString(2),rs.getString(3),rs.getTimestamp(4)));
 			System.out.println("--jdbc层--查询数据返回结果--"+list);
 			}
-			rs.close();
-			st.close();
-			cn.close();
-		} catch (SQLException e) {
+			
+			
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				st.close();
+				cn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		return list;
 	}

@@ -79,8 +79,6 @@ public class CreatImage {
 		return image;
 	}
 	
-	
-	
 	//产生4字符的验证码
 	public static String getString(){
 		String str = "";

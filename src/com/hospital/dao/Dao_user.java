@@ -8,13 +8,14 @@ import com.hospital.model.Model_user;
 
 public class Dao_user {
 	
-	static List<Model_user> list = new ArrayList<Model_user>();
+	
 	static Jdbc jdbc = new Jdbc();
 	static Model_user model_user= new Model_user();
 	static int i = 0;
 	
 	//查询数据库，返回结果集
 	public List<Model_user> select(){
+		List<Model_user> list = new ArrayList<Model_user>();
 		System.out.println("+++dao层++query++");
 		String sql = "select * from user";
 		list = jdbc.query(sql);
@@ -23,8 +24,9 @@ public class Dao_user {
 	
 	//查询数据库 通过ID ，
 		public Model_user findUserById(int id){
+			List<Model_user> list = new ArrayList<Model_user>();
 			System.out.println("+++dao层++findUserById++");
-			String sql = "select id,name,password,timestamp from user where id="+id;
+			String sql = "select id,username,password,timestamp from user where id="+id;
 			list = jdbc.query(sql);
 			if(list.size()>0){
 			return  list.get(0);
@@ -32,10 +34,13 @@ public class Dao_user {
 			return null;
 		}
 	//查询数据库 通过用户名 ，返回一个对象
-		public Model_user findUserByName(String name){
+		public Model_user findUserByName(String username){
+			List<Model_user> list = new ArrayList<Model_user>();
 			System.out.println("+++dao层++findUserByname++");
-			String sql = "select id,name,password,timestamp from user where username="+name;
+			String sql = "select id,username,password,timestamp from user where username='"+username+"'";
 			list = jdbc.query(sql);
+			System.out.println(sql);
+			System.out.println(sql+"+++++dao层 ++++++"+list);
 			if(list.size()>0){
 			return  list.get(0);
 			}

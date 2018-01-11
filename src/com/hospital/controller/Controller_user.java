@@ -83,6 +83,7 @@ public class Controller_user extends HttpServlet{
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("+++controller层+++login方法 +++++++");
 		String username = request.getParameter("username");
+		System.out.println(username);
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
 		String ism = request.getParameter("ism");
@@ -97,7 +98,7 @@ public class Controller_user extends HttpServlet{
 			if(user.getPassword().equals(password)){
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				response.sendRedirect("a.jsp");//a.jsp是登录好的界面
+				response.sendRedirect("index.jsp");//a.jsp是登录好的界面
 			}else{
 				msg = "用户密码不正确，请重新输入";
 				request.setAttribute("msg", msg);
@@ -107,7 +108,7 @@ public class Controller_user extends HttpServlet{
 			
 		}
 		
-		
+		user = null;
 	}
 
 }

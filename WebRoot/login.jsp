@@ -13,7 +13,7 @@
 <table align="center">
 	<tr>
 		<td>用户名</td>
-		<td><input type="text" name="usename"/></td>
+		<td><input type="text" name="username"/></td>
 	</tr>
 	<tr>
 		<td>密码吗</td>
@@ -21,7 +21,7 @@
 	</tr>
 	<tr>
 		<td>验证码</td>
-		<td><input type="text" name="code"/><img onclick="local.href='user?m=creatImage'" src="img/a.jpg"></td>
+		<td><input type="text" name="code"/><img onclick="local.href='user?m=creatImage'" src="user?m=creatImage"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox" name="ism" value="1"/></td>
