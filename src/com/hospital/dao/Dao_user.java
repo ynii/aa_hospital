@@ -36,11 +36,9 @@ public class Dao_user {
 	//查询数据库 通过用户名 ，返回一个对象
 		public Model_user findUserByName(String username){
 			List<Model_user> list = new ArrayList<Model_user>();
-			System.out.println("+++dao层++findUserByname++");
+			
 			String sql = "select id,username,password,timestamp from user where username='"+username+"'";
 			list = jdbc.query(sql);
-			System.out.println(sql);
-			System.out.println(sql+"+++++dao层 ++++++"+list);
 			if(list.size()>0){
 			return  list.get(0);
 			}
@@ -50,7 +48,7 @@ public class Dao_user {
 	//增添数据库，返回int i
 	public int insert(Model_user user){
 		System.out.println("+++dao层++add_user++");
-		String sql = "insert into user values(null,"+user.getName()+","+user.getPassword()+","+user.getTimestamp()+")";
+		String sql = "insert into user values(null,"+user.getusername()+","+user.getPassword()+","+user.getTimestamp()+")";
 		i = jdbc.CUD(sql);
 		return i;
 	}
@@ -58,7 +56,7 @@ public class Dao_user {
 	//更新数据库 ，返回int i;
 	public int update(Model_user user){
 		System.out.println("+++dao层++update_user++");
-		String sql = "update ueser set password="+user.getPassword()+"where id="+user.getId()+"and name="+user.getName();
+		String sql = "update ueser set password="+user.getPassword()+"where id="+user.getId()+"and name="+user.getusername();
 		i = jdbc.CUD(sql);
 		return i;
 	}

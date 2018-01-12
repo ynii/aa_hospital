@@ -81,14 +81,13 @@ public class Controller_user extends HttpServlet{
 	}
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("+++controller层+++login方法 +++++++");
+		
 		String username = request.getParameter("username");
-		System.out.println(username);
+		
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
 		String ism = request.getParameter("ism");
 		Model_user user = service_user.findUserByName(username);
-		System.out.println("user"+user);
 		String msg = null;
 		if(user==null){
 			msg = "用户名不存在，请重新登录";
@@ -96,11 +95,13 @@ public class Controller_user extends HttpServlet{
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else{
 			if(user.getPassword().equals(password)){
+				msg = "用户名密码正确，登陆成功";
+				request.setAttribute("msg", msg);
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				response.sendRedirect("index.jsp");//a.jsp是登录好的界面
+				request.getRequestDispatcher("success.jsp").forward(request, response);//a.jsp是登录好的界面
 			}else{
-				msg = "用户密码不正确，请重新输入";
+				msg = "密码不正确，请重新输入";
 				request.setAttribute("msg", msg);
 				request.getRequestDispatcher("index.jsp").forward(request,response);
 				

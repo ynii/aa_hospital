@@ -21,7 +21,7 @@
 	</tr>
 	<tr>
 		<td>验证码</td>
-		<td><input type="text" name="code"/><img onclick="local.href='user?m=creatImage'" src="user?m=creatImage"></td>
+		<td><input type="text" name="code"/><img onclick="this.src='user?m=creatImage&a='+Math.random()" src="user?m=creatImage" /></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox" name="ism" value="1"/></td>
@@ -33,6 +33,5 @@
 	</tr>
 </table>
 </form>
-
 </body>
 </html>

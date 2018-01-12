@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Model_user {
 	
 	private int id;
-	private String name;
+	private String username;
 	private String password;
 	private Timestamp timestamp;
 	
@@ -15,11 +15,11 @@ public class Model_user {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getusername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setusername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -39,20 +39,20 @@ public class Model_user {
 	
 	@Override
 	public String toString() {
-		return "Model_user [id=" + id + ", name=" + name + ", password="
+		return "Model_user [id=" + id + ", username=" + username + ", password="
 				+ password + ", timestamp=" + timestamp + "]";
 	}
-	public Model_user(int id, String name, String password,
+	public Model_user(int id, String username, String password,
 			Timestamp timestamp) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.username = username;
 		this.password = password;
 		this.timestamp = timestamp;
 	}
 	
-	public Model_user(String name, String password) {
-		this.name = name;
+	public Model_user(String username, String password) {
+		this.username = username;
 		this.password = password;
 	}
 	

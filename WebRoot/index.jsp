@@ -8,18 +8,30 @@
 <title>index界面</title>
 </head>
 <body>
-<% request.getAttribute("msg"); %>
+a、<%=request.getAttribute("msg") %><br/>
+b、<%=session.getAttribute("user") %><br/>
+c、${sessionScope.user.username}<br/>
 ------------------index.jsp---------------------------------<br/>
 1、${requestScope.msg}<br/>
 2、${requestScope.msg}<br/>
 3、${pageContext.session.id}<br/>
-4、${sessionScope.user.name}<br/>
+4、${sessionScope.user.username}<br/>
+#、${sessionScope.user.password}<br/>
 5、${session.getId()}<br/>
 6、<%=session.getId() %><br/>
 <table align="center" border="1" cellpadding="0" cellspacing="0" width="200" height="50">
 	<tr>
+		<td>cookie.username.value</td>
 		<td>${cookie.username.value}</td>
 		<td>${cookie.password.value}</td>
+	</tr>
+</table>
+
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="200" height="50">
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
 	</tr>
 </table>
 
