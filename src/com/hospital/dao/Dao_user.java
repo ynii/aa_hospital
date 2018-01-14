@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hospital.jdbc.Jdbc;
 import com.hospital.model.Model_user;
+import com.hospital.model.Page;
 
 public class Dao_user {
 	
@@ -69,7 +70,20 @@ public class Dao_user {
 		return i;
 	}
 	
+	//分页查询
+	public void listUserByPager(Page<Model_user> pager){
+		String sql = "select * from user limit "+pager.getOffSet()+","+pager.getPageSize();
+		System.out.println(sql);
+		List<Model_user> users = jdbc.query(sql);
+		pager.setDatas(users);
+	}
 	
+	//获取数据库总条数 
+	public Long getTotalCount(){
+		String sql = "select count(id) from user";
+		return  jdbc.query_totalCount(sql); 
+
+	}
 	
 	
 }

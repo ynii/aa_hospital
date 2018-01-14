@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.TabableView;
+
 import com.hospital.model.Model_user;
 
 public class Jdbc {
@@ -72,4 +74,35 @@ public class Jdbc {
 	}
 	
 
+	//查询数据库 总条数
+	public Long query_totalCount(String sql){
+		long totalCount = 0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		//	cn = DriverManager.getConnection(url,user,password);
+			cn = DriverManager.getConnection(url, user, password);
+			System.out.println("连接成功.....");
+			st = cn.createStatement();
+			System.out.println("++++++bbb");
+			rs = st.executeQuery(sql);
+			while(rs.next()){
+				totalCount = rs.getLong(1);
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+				st.close();
+				cn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return totalCount;
+	}
+	
+	
 }

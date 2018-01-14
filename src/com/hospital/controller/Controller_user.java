@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.hospital.model.Model_user;
+import com.hospital.model.Page;
 import com.hospital.pulbic.CreatImage;
 import com.hospital.service.Service_user;
 
@@ -42,11 +43,34 @@ public class Controller_user extends HttpServlet{
 		case "creatImage":
 			creatImage(request,response);
 			break;
+		case "listUserByPager":
+			listUserByPager(request,response);
 		default:
 			break;
 		}
 	}
 	
+	//分页查询
+	private void listUserByPager(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		String currentPage = request.getParameter("currentPage");
+		System.out.println(currentPage);
+		Page<Model_user> pager = new Page<Model_user>();
+		
+		if(currentPage!=null){
+			pager.setCurrentPage(Integer.parseInt(currentPage));
+			System.out.println("**当前页是*****"+pager.getCurrentPage());
+		}
+		service_user.listUserByPager(pager);
+		request.setAttribute("pager", pager);
+		
+		request.getRequestDispatcher("listUserByPager.jsp").forward(request, response);
+		
+		
+		
+	}
+
 	private void creatImage(HttpServletRequest request,
 			HttpServletResponse response) {
 		System.out.println("*****creatImage******");

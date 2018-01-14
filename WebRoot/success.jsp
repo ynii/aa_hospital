@@ -8,6 +8,7 @@
 </head>
 <body>
 <hr/>
+<a href="user?m=listUserByPager">分页管理</a>
 0、当前在线人数：${applicationScope.count }<br>
  0、${sessionScope.user.username}<br>
 0、${sessionScope.user.password}<br>

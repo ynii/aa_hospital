@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hospital.dao.Dao_user;
 import com.hospital.model.Model_user;
+import com.hospital.model.Page;
 
 public class Service_user {
 	
@@ -46,7 +47,13 @@ public class Service_user {
 		return dao.delete(id);
 	}
 	
-	
+	// listUserByPager
+	public void listUserByPager(Page<Model_user> pager){
+		dao.listUserByPager(pager);
+		long totalCount = dao.getTotalCount();
+		pager.setTotalcount(totalCount);
+		
+	}
 	
 	
 }
