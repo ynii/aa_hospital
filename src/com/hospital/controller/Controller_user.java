@@ -3,10 +3,12 @@ package com.hospital.controller;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,11 +85,14 @@ public class Controller_user extends HttpServlet{
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username = request.getParameter("username");
-		
+		System.out.println(username);
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
 		String ism = request.getParameter("ism");
+		
 		Model_user user = service_user.findUserByName(username);
+		
+		System.out.println(user);
 		String msg = null;
 		if(user==null){
 			msg = "用户名不存在，请重新登录";
@@ -99,7 +104,20 @@ public class Controller_user extends HttpServlet{
 				request.setAttribute("msg", msg);
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
+				//Cookie 添加属性
+				Cookie c_username = new Cookie("username", URLEncoder.encode(user.getusername(),"utf-8"));
+				Cookie c_password = new Cookie("password", URLEncoder.encode(user.getPassword(),"utf-8"));
+				if("1".equals(ism)){
+					c_username.setMaxAge(60*10);
+					c_password.setMaxAge(60*10);
+				}else{
+					c_username.setMaxAge(0);
+					c_password.setMaxAge(0);
+				}
+				response.addCookie(c_username);
+				response.addCookie(c_password);
 				request.getRequestDispatcher("success.jsp").forward(request, response);//a.jsp是登录好的界面
+				//response.sendRedirect("success.jsp");
 			}else{
 				msg = "密码不正确，请重新输入";
 				request.setAttribute("msg", msg);

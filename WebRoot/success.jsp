@@ -8,15 +8,17 @@
 </head>
 <body>
 <hr/>
-
-1、<%=request.getAttribute("msg") %><br>
+0、当前在线人数：${applicationScope.count }<br>
+ 0、${sessionScope.user.username}<br>
+0、${sessionScope.user.password}<br>
+1、<%=session.getAttribute("user") %><br>
 2、<%=session.getId() %><br>
 3、<%=session.getAttribute("id") %><br>
 4、${sessionScope.id}<br>
 <%=session.getAttribute("id") %>
 <%out.print(session.getAttribute("id")); %>
 5、${pageContext.session.id }
-
+ 
 <table align="center" >
 	<tr>
 		<td><span style="color:orange">用户名</span></td>

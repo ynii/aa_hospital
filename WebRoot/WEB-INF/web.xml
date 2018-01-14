@@ -2,18 +2,22 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>aa_hospital</display-name>
   
+  <!-- 配置listener -->
+  <listener>
+  		<listener-class>com.hospital.listener.ListenerSession</listener-class>
+  </listener>
+  
 	<!--配置字符集过滤器-->
-<!-- <filter>
+<filter>
 	<filter-name>characterFilter</filter-name>
 	<filter-class>com.hospital.filter.CharacterFilter</filter-class>
 </filter>
-	配置字符集过滤器映射
 <filter-mapping>
 	<filter-name>characterFilter</filter-name>
-	设置该过滤器要过滤的请求url地址
 	<url-pattern>/*</url-pattern>
 </filter-mapping>
 
+<!-- 
 	配置Log过滤器
 <filter>
 	<filter-name>logFilter</filter-name>
