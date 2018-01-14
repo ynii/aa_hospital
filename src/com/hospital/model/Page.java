@@ -44,7 +44,7 @@ public class Page<T> {
 	public Long getTotalcount() {
 		return totalcount;
 	}
-	public void setTotalcount(Integer totalcount) {
+	public void setTotalcount(Long totalcount) {
 		this.totalcount = totalcount;
 	}
 	public Integer getTotalPages() {
